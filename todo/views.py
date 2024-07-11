@@ -52,10 +52,21 @@ def update(request, task_id):
     }
     return render(request, "todo/edhit.html", context)
 
+
 def delete(request, task_id):
     try:
         task = Task.objects.get(pk=task_id)
     except Task.DoesNotExist:
         raise Http404("Task does not exist")
     task.delete()
+    return redirect(index)
+
+
+def close(request, task_id):
+    try:
+        task = Task.objects.get(pk=task_id)
+    except Task.DoesNotExist:
+        raise Http404("Task dose not exist")
+    task.completed = True
+    task.save()
     return redirect(index)
