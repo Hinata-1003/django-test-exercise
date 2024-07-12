@@ -26,4 +26,3 @@ urlpatterns = [
     path('<int:task_id>/delete', todo_views.delete, name='delete'),
     path('<int:task_id>/close', todo_views.close, name='close'),
 ]
-
